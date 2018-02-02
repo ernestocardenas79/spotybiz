@@ -1,0 +1,15 @@
+db:
+  image: mongo:3.0.15-wheezy
+  ports:
+    - "27017:27017"
+  volumes:
+    - spotybizdb:/data/db
+  restart: always
+rest:
+  image: spotybiz.rest:latest
+  volumes:
+    - ./spotybiz.rest/:/home/app/spotybizrest
+  ports:
+    - "8080:3937"
+  links:
+    - db
